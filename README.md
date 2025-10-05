@@ -13,6 +13,7 @@
 - (modprobe i2c-dev)
 - gammastep
 - neovim (if you want)
+- plocate
 
 ## Arch Linux
 ```bash
@@ -22,7 +23,7 @@ cd paru-bin
 makepkg -si
 cd ..
 paru -Syyu
-paru -S niri fastfetch kitty swaync waybar gum fzf vicinae-bin ddcutil gammastep neovim
+paru -S niri fastfetch kitty swaync waybar gum fzf vicinae-bin ddcutil gammastep neovim plocate
 echo "i2c-dev" | sudo tee -a /etc/modules-load.d/i2c-dev.conf
 modprobe i2c-dev (if you need root use it)
 ```
