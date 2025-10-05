@@ -1,0 +1,201 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "Maple Mono NF CN", "Material Symbols Rounded";
+    font-weight: bold;
+    font-size: 12px;
+}
+
+window#waybar {
+    background-color: rgba(18, 18, 18, 0.99);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+    border-radius: 8px;
+    border: 1px solid #303030;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+#custom-notification {
+  margin-left: 4px;
+  padding-left: 4px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: #303030;
+}
+
+#workspaces button {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 0 4px;
+}
+
+#workspaces button:hover {
+    background-color: #303030;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    border-radius: 8px;
+}
+
+#workspaces button.focused, #workspaces button.active {
+    background-color: #121212;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    border-radius: 8px;
+}
+
+#mode {
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#custom-expand-icon,
+#clock,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+
+#custom-separator {
+    margin-left: 4px;
+}
+
+#custom-tools-icon {
+  margin-left: 8px;
+}
+
+#window {
+  padding: 2px 0;
+}
+
+#workspaces {
+    margin: 0 4px;
+}
+
+#custom-tray-icon {
+  margin-right: 7px;
+}
+
+#custom-install {
+  margin-left: -2px;
+  margin-right: 2px;
+}
+
+#custom-install-aur {
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+#custom-remover {
+  margin-left: 10px;
+  margin-right: 7px;
+}
+
+#custom-fetch {
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+#custom-pass-gen {
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+#custom-tools-icon {
+  margin-right: 7px;
+}
+
+tooltip {
+  background-color: #121212;
+  border-radius: 8px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #work-container {
+    margin-left: 20;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #custom-notification {
+    margin-right: 20;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#pulseaudio {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+#pulseaudio.muted {
+    background-color: transparent;
+    color: #2a5c45;
+}
+
+#wireplumber {
+    background-color: transparent;
+    color: #000000;
+}
+
+#wireplumber.muted {
+    background-color: transparent;
+}
+
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#tray {
+    background-color: transparent;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+    background-color: #0069d4;
+}

@@ -1,0 +1,34 @@
+#!/bin/sh
+
+echo "• System update in progress..."
+paru -Syyu
+
+echo
+
+orphans=$(pacman -Qdtq)
+if [ -n "$orphans" ]; then
+  echo "• Removing orphan packages..."
+  sudo pacman -Rns $orphans
+else
+  echo "• No orphan packages found."
+fi
+
+echo
+
+if command -v flatpak >/dev/null 2>&1; then
+  echo "• Updating Flatpak packages..."
+  flatpak update -y
+else
+  echo "• Flatpak not found."
+fi
+
+echo
+
+if command -v distrobox >/dev/null 2>&1; then
+  echo "• Distrobox found."
+  distrobox upgrade --all
+else
+  echo "• Distrobox not found."
+fi
+
+sh ~/.config/hypr/scripts/show-done

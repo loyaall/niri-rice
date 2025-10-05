@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo
+gum spin --spinner "minidot" --title "Done. Press any key to exit..." -- bash -c 'read -n 1 -s'

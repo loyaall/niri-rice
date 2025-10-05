@@ -1,0 +1,169 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 52, // Waybar height (to be removed for auto height)
+    "margin-right": 10,
+    "margin-bottom": 10,
+    "margin-left": 10,
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "group/work-container",
+        "custom/separator",
+        "group/tools-expander"
+    ],
+    "modules-center": [
+        "clock",
+        "custom/update"
+    ],
+    "modules-right": [
+        "group/tray-expander",
+        "pulseaudio",
+        "custom/notification"
+    ],
+
+    "custom/separator": {
+        "format": "|"
+    },
+
+    "group/work-container": {
+        "modules": ["niri/workspaces"]
+    },
+
+    "group/tools-expander": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 600,
+            "children-class": "tools-group-item"
+        },
+        "modules": ["custom/tools-icon", "custom/install", "custom/install-aur", "custom/remover", "custom/fetch", "custom/pass-gen", "custom/picker"]
+    },
+
+    "custom/tools-icon": {
+        "format": "<span font='Material Symbols Rounded' weight='1000' size='large' color='white'>accessibility</span>",
+        "tooltip": false
+    },
+
+    "custom/install": {
+        "format": "<span font='Material Symbols Rounded' weight='800' size='x-large' color='white'>download</span>",
+        "tooltip-format": "Install packages from pacman.",
+        "on-click": "kitty -T Pacman-Installer -e sh ~/.config/niri/scripts/installer"
+    },
+
+    "custom/install-aur": {
+        "format": "<span font='Material Symbols Rounded' weight='800' size='large' color='white'>deployed_code_update</span>",
+        "tooltip-format": "Install packages from AUR.",
+        "on-click": "kitty -T Aur-Installer -e sh ~/.config/niri/scripts/aur-installer"
+    },
+
+    "custom/remover": {
+        "format": "<span font='Material Symbols Rounded' weight='800' size='large' color='white'>delete_forever</span>",
+        "tooltip-format": "Remove Packages.",
+        "on-click": "kitty -T Remover -e sh ~/.config/niri/scripts/remover"
+    },
+
+    "custom/fetch": {
+        "format": "<span font='Material Symbols Rounded' weight='800' size='large' color='white'>article_person</span>",
+        "tooltip-format": "Flex that you use arch!",
+        "on-click": "kitty -T Fetch -e sh ~/.config/niri/scripts/fetch"
+    },
+
+    "custom/pass-gen": {
+        "format": "<span font='Material Symbols Rounded' weight='800' size='large' color='white'>lock_open</span>",
+        "tooltip-format": "Generate a secure password.",
+        "on-click": "kitty -T Pass-Gen -e ~/.config/niri/scripts/pass-gen"
+    },
+
+    "custom/picker": {
+        "format": "<span font='Material Symbols Rounded' weight='800' size='large' color='white'>colorize</span>",
+        "tooltip-format": "Pick a color from the screen",
+        "on-click": "notify-send \"Hyprpicker 🎨\" \"You picked the color $(hyprpicker -a)\" --icon ~/.config/niri/assets/picker.jpg"
+    },
+
+    "group/tray-expander": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 600,
+            "children-class": "tray-group-item"
+        },
+        "modules": ["custom/expand-icon", "tray"]
+    },
+
+    "custom/expand-icon": {
+        "format": "<span font='Material Symbols Rounded' weight='1000' size='xx-large' color='white'>chevron_left</span>",
+        "tooltip": false
+    },
+    
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "  ",
+            "none": "  ",
+            "dnd-notification": "  ",
+            "dnd-none": "  ",
+            "inhibited-notification": "  ",
+            "inhibited-none": "  ",
+            "dnd-inhibited-notification": "  ",
+            "dnd-inhibited-none": "  "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "custom/update": {
+        "exec": "bash -c 'updates=$(pacman -Qu | wc -l); if [ $updates -gt 0 ]; then echo \"| $updates updates  \"; fi'",
+        "interval": 60,
+        "on-click": "kitty -T Updater -e sh ~/.config/niri/scripts/updater",
+        "tooltip-format": "Arch need to be updated!",
+        "format": "{}",
+        "signal": 7
+    },
+
+    "niri/workspaces": {
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "active": "󱓻"
+        }
+    },
+
+    "clock": {
+        "format": "{:%d %b - %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d/%m/%Y}"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+}
