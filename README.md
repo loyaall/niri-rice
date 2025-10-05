@@ -14,6 +14,7 @@
 - gammastep
 - neovim (if you want)
 - plocate
+- wl-clipboard
 
 ## Arch Linux
 ```bash
@@ -23,7 +24,7 @@ cd paru-bin
 makepkg -si
 cd ..
 paru -Syyu
-paru -S niri fastfetch kitty swaync waybar gum fzf vicinae-bin ddcutil gammastep neovim plocate
+paru -S niri fastfetch kitty swaync waybar gum fzf vicinae-bin ddcutil gammastep neovim plocate wl-clipboard
 echo "i2c-dev" | sudo tee -a /etc/modules-load.d/i2c-dev.conf
 modprobe i2c-dev (if you need root use it)
 ```
